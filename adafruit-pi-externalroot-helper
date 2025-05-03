@@ -94,7 +94,7 @@ export target_partition="${target_drive}1"
 
 info "dependencies" "Installing rsync and parted."
     # All except gdisk are probably installed, but let's make sure.
-    apt-get install rsync parted
+    dpkg -s rsync >/dev/null 2>&1 && dpkg -s parted >/dev/null 2>&1 && echo "Already installed..." || { sudo apt-get update && sudo apt-get install -y rsync parted; }
 
 info "fs create" "Creating ${target_partition}"
     # The alternative here seems to be to pipe a series of commands
@@ -133,7 +133,8 @@ info "fs copy" "This will take quite a while.  Please be patient!"
 info "boot config" "Configuring boot from {$target_partition}"
     # rootdelay=5 is likely not necessary here, but seems to do no harm.
     cp /boot/dietpiEnv.txt /boot/dietpiEnv.txt.bak
-    sed -i "s|root=\(PARTUUID\|UUID\)=\S\+ |root=PARTUUID=${partition_unique_partuuid} |g" /boot/dietpiEnv.txt
+    sed -i "s|rootdev=PARTUUID=\S\+\s*|rootdev=PARTUUID=${partition_unique_partuuid} |g" /boot/dietpiEnv.txt
+    sed -i "s|rootdev=UUID=\S\+\s*|rootdev=PARTUUID=${partition_unique_partuuid} |g" /boot/dietpiEnv.txt
 
 info "boot config" "Commenting out old root partition in /mnt/etc/fstab, adding new one"
     # These changes are made on the new drive after copying so that they
