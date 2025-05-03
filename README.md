@@ -19,5 +19,5 @@ wish to use for your root filesystem:
 Sources and Further Reading
 ---------------------------
 
-Modified from [benjamin-nose/Adafruit-Pi-ExternalRoot-Helper](https://github.com/benjamin-nose/Adafruit-Pi-ExternalRoot-Helper)
-Based on [Adafruit-Pi-ExternalRoot-helper](https://github.com/adafruit/Adafruit-Pi-ExternalRoot-Helper)]
+- Modified from [benjamin-nose/Adafruit-Pi-ExternalRoot-Helper](https://github.com/benjamin-nose/Adafruit-Pi-ExternalRoot-Helper)
+- Based on [Adafruit-Pi-ExternalRoot-helper](https://github.com/adafruit/Adafruit-Pi-ExternalRoot-Helper)
